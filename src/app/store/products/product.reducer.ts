@@ -1,9 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
-import { loadProductsSuccess } from './product.actions';
+import { loadProductsSuccess, searchProducts } from './product.actions';
 import { Product } from '../../models/product.model';
 
 export interface ProductState {
   products: Product[];
+  searchTerm: string;
 }
 
 const initialState: ProductState = {
@@ -29,7 +30,8 @@ const initialState: ProductState = {
       price: 3499.00,
       imageUrl: 'https://imgs.casasbahia.com.br/1546366805/1xg.jpg'
     }
-  ]
+  ],
+  searchTerm: '',
 };
 
 export const productReducer = createReducer(
@@ -37,5 +39,9 @@ export const productReducer = createReducer(
   on(loadProductsSuccess, (state, { products }) => ({
     ...state,
     products,
+  })),
+  on(searchProducts, (state, { searchTerm }) => ({
+    ...state,
+    searchTerm,
   }))
 );

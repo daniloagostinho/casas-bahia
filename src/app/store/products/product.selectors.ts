@@ -7,3 +7,17 @@ export const selectAllProducts = createSelector(
   selectProductState,
   (state) => state.products
 );
+
+export const selectSearchTerm = createSelector(
+  selectProductState,
+  (state) => state.searchTerm
+);
+
+export const selectFilteredProducts = createSelector(
+  selectAllProducts,
+  selectSearchTerm,
+  (products, searchTerm) =>
+    products.filter((product) =>
+      product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+);
