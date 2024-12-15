@@ -6,6 +6,9 @@ import { provideStore } from '@ngrx/store';
 import { productReducer } from './store/products/product.reducer';
 import { cartReducer } from './store/cart/cart.reducer';
 import { AppStoreModule } from './store/store.module';
+import { HttpClientModule } from '@angular/common/http';
+import { provideEffects } from '@ngrx/effects';
+import { ProductEffects } from './store/products/product.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +17,8 @@ export const appConfig: ApplicationConfig = {
       products: productReducer,
       cart: cartReducer,
     }),
-    importProvidersFrom(AppStoreModule)
+    provideEffects([ProductEffects]),
+    importProvidersFrom(AppStoreModule),
+    importProvidersFrom(HttpClientModule)
   ],
 };

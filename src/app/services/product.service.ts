@@ -1,33 +1,18 @@
 // src/app/services/product.service.ts
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Product } from '../models/product.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
-  getProducts() {
-    return [
-      {
-        id: 1,
-        title: 'Geladeira Frost Free 350L',
-        description: 'Geladeira moderna com alta eficiência energética.',
-        price: 1999.90,
-        imageUrl: 'https://imgs.casasbahia.com.br/55066470/1g.jpg'
-      },
-      {
-        id: 2,
-        title: 'Smart TV 55" 4K',
-        description: 'Imagem incrível com qualidade 4K.',
-        price: 2999.99,
-        imageUrl: 'https://imgs.casasbahia.com.br/55066185/1g.jpg'
-      },
-      {
-        id: 3,
-        title: 'Notebook i5 8GB SSD 256GB',
-        description: 'Ideal para trabalho e estudos.',
-        price: 3499.00,
-        imageUrl: 'https://imgs.casasbahia.com.br/1546366805/1xg.jpg'
-      }
-    ];
+  private apiUrl = 'http://localhost:3000/products';
+
+  constructor(private http: HttpClient) {}
+
+  getProducts(searchTerm: string = ''): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}?q=${searchTerm}`);
   }
 }
