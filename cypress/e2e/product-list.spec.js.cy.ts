@@ -71,3 +71,25 @@ describe('Header and Product Search with Add to Cart', () => {
   });
 });
 
+describe('Add to Cart with Feedback', () => {
+  it('should add a product to the cart and display feedback', () => {
+    cy.visit('http://localhost:4200'); // Certifique-se de que o servidor está ativo
+
+    // Pesquisa "Geladeira"
+    cy.get('.search-bar input').type('Geladeira');
+    cy.get('.search-bar button').click();
+
+    // Aguarda os resultados da busca
+    cy.get('.product-grid', { timeout: 5000 }).should('be.visible');
+
+    // Adiciona o primeiro produto ao carrinho
+    cy.get('.product-card').first().within(() => {
+      cy.contains('Adicionar ao Carrinho').click();
+    });
+
+    // Verifica se o feedback de sucesso é exibido
+    cy.get('.feedback', { timeout: 5000 })
+      .should('be.visible')
+      .and('contain.text', 'Produto adicionado ao carrinho!');
+  });
+});
