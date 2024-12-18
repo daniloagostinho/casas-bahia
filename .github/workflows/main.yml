@@ -1,0 +1,49 @@
+name: CI Pipeline
+
+# Dispara o workflow em eventos específicos
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  ci:
+    name: CI Pipeline - Lint, Build e Testes
+    runs-on: ubuntu-latest
+
+    steps:
+      # Passo 1: Fazer checkout do código
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Passo 2: Configurar o Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' # Substitua pela versão compatível do Node.js
+          cache: 'npm'
+
+      # Passo 3: Instalar dependências
+      - name: Install Dependencies
+        run: npm install
+
+      # Passo 4: Executar lint para verificar estilo de código
+      - name: Run Lint
+        run: npm run lint
+
+      # Passo 5: Fazer o build da aplicação
+      - name: Build Application
+        run: npm run build
+
+       # Passo 6: Executar testes unitários
+      - name: Run Unit Tests
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+        run: npm run test -- --watch=false --code-coverage
+
+      # Passo 7: Executar testes End-to-End (E2E) com Cypress
+      - name: Run E2E Tests
+        run: npm run cypress:run
