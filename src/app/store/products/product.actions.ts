@@ -8,7 +8,7 @@ export const loadProductsSuccess = createAction(
 );
 export const loadProductsFailure = createAction(
   '[Product List] Load Products Failure',
-  props<{ error: any }>()
+  props<{ error: string }>()
 );
 
 export const searchProducts = createAction(
