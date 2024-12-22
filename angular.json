@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "casas-bahia": {
+    "ecommerce-fullstack": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/casas-bahia",
+            "outputPath": "dist/ecommerce-fullstack",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "casas-bahia:build:production"
+              "buildTarget": "ecommerce-fullstack:build:production"
             },
             "development": {
-              "buildTarget": "casas-bahia:build:development"
+              "buildTarget": "ecommerce-fullstack:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "casas-bahia:build"
+            "buildTarget": "ecommerce-fullstack:build"
           }
         },
         "test": {
