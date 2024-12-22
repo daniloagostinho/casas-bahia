@@ -3,6 +3,6 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { CartComponent } from './components/cart/cart.component';
 
 export const routes: Routes = [
-    { path: '', component: ProductListComponent }, // Página inicial (lista de produtos)
-    { path: 'cart', component: CartComponent },   // Rota para o carrinho
+    { path: '', component: ProductListComponent }, 
+    { path: 'cart', component: CartComponent },   
 ];

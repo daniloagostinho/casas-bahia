@@ -34,6 +34,9 @@ jobs:
       - name: Run Lint
         run: npm run lint
 
+      - name: PASSO NOVO - Verify TypeScript Configuration
+        run: tsc --showConfig
+
       # Passo 5: Fazer o build da aplicação
       - name: Build Application
         run: npm run build
